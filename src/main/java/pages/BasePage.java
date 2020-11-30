@@ -1,6 +1,8 @@
 package pages;
 
 import lombok.Getter;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,6 +31,13 @@ public abstract class BasePage {
         .until(ExpectedConditions.elementToBeClickable(element));
   }
 
+  public void clickWithJs(WebElement webElement) {
+    JavascriptExecutor executor = (JavascriptExecutor) driver;
+    executor.executeScript("arguments[0].click();", webElement);
+  }
+  public WebElement find(By locator){
+    return getDriver().findElement(locator);
+  }
 
 
 }
